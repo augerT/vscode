@@ -5,18 +5,8 @@
 
 // allow-any-unicode-file
 
-const content = `The world has changed
-
-I feel it in the water.
-
-I feel it in the earth.
-
-I smell it in the air.
-
-Much that once was is lost, for none now live who remember it.
-
-It began with the forging of the Great Rings. Three were given to the Elves, immortal, wisest and fairest of all beings. Seven to the Dwarf-Lords, great miners and craftsmen of the mountain halls. And nine, nine rings were gifted to the race of Men, who above all else desire power. For within these rings was bound the strength and the will to govern each race. But they were all of them deceived, for another ring was made. Deep in the land of Mordor, in the Fires of Mount Doom, the Dark Lord Sauron forged a master ring, and into this ring he poured his cruelty, his malice and his will to dominate all life.
-
+const content = `It began with the forging of the Great Rings. Three were given to the Elves, immortal, wisest and fairest of all beings. Seven to the Dwarf-Lords, great miners and craftsmen of the mountain halls. And nine, nine rings were gifted to the race of Men, who above all else desire power. For within these rings was bound the strength and the will to govern each race. But they were all of them deceived, for another ring was made. Deep in the land of Mordor, in the Fires of Mount Doom, the Dark Lord Sauron forged a master ring, and into this ring he poured his cruelty, his malice and his will to dominate all life.
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
 One ring to rule them all.
 
 One by one, the free lands of Middle-Earth fell to the power of the Ring, but there were some who resisted. A last alliance of men and elves marched against the armies of Mordor, and on the very slopes of Mount Doom, they fought for the freedom of Middle-Earth. Victory was near, but the power of the ring could not be undone. It was in this moment, when all hope had faded, that Isildur, son of the king, took up his father’s sword.
@@ -135,6 +125,26 @@ function registerDecoratorButton(id: string, options: monaco.editor.IModelDecora
 	});
 }
 
+function registerPrintViewLineButton(id: string): undefined {
+	const button = document.getElementById(id) as HTMLButtonElement;
+
+	button.addEventListener('click', () => {
+		const selection = editor.getSelection();
+		if (!selection) {
+			return;
+		}
+
+		const modelEndPosition = selection.getEndPosition();
+
+		const viewModel = editor._getViewModel();
+
+		const viewEndPosition = viewModel.coordinatesConverter.convertModelPositionToViewPosition(modelEndPosition);
+
+		console.log('Model end position:', modelEndPosition);
+		console.log('View end position:', viewEndPosition);
+
+	});
+}
 registerDecoratorButton('whole-line-bg', {
 	inlineClassName: `whole-line-bg`,
 	isWholeLine: true,
@@ -146,9 +156,7 @@ registerDecoratorButton('inline-inverse', {
 	lineHeight: 1
 });
 
-registerDecoratorButton('cloak', {
-	inlineClassName: `cloaked`,
-});
+registerPrintViewLineButton('print-view-line');
 
 const scale = document.getElementById('scale') as HTMLInputElement;
 scale.addEventListener('change', event => {
