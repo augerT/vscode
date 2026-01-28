@@ -168,3 +168,60 @@ monaco.editor.EditorZoom.onDidChangeZoomLevel((zoomLevel) => {
 
 	editor.getContainerDomNode().style.width = `${256 * factor}px`;
 });
+
+let currentScrollAnimation: number | null = null;
+
+function animateScroll(newTop: number, immediate: boolean = false) {
+
+	// Cancel any ongoing animation
+	if (currentScrollAnimation !== null) {
+		cancelAnimationFrame(currentScrollAnimation);
+		currentScrollAnimation = null;
+	}
+
+	const currentTop = editor.getScrollTop();
+	const distance = Math.abs(newTop - currentTop);
+
+	if (distance === 0) {
+		return;
+	}
+
+	// Calculate dynamic duration based on distance
+	// Longer distances = shorter duration (faster)
+	// Shorter distances = longer duration (slower)
+	const MIN_DURATION = 300; // Fastest (for long distances)
+	const MAX_DURATION = 1666; // Slowest (for short distances)
+	const DISTANCE_THRESHOLD = 1000; // Distance at which we hit minimum duration
+
+	// Inverse relationship: as distance increases, duration decreases
+	const calculatedDuration = MAX_DURATION - (distance / DISTANCE_THRESHOLD) * (MAX_DURATION - MIN_DURATION);
+	const duration = immediate ? 1 : Math.max(MIN_DURATION, Math.min(MAX_DURATION, calculatedDuration));
+
+	const startTime = performance.now();
+
+	const animate = (currentTime: number) => {
+		const elapsed = currentTime - startTime;
+		const progress = Math.min(elapsed / duration, 1);
+
+		const easeOut = 1 - Math.pow(1 - progress, 3);
+		const newScrollTop = currentTop + (newTop - currentTop) * easeOut;
+
+		editor.setScrollTop(newScrollTop);
+
+		if (progress < 1) {
+			currentScrollAnimation = requestAnimationFrame(animate);
+		} else {
+			currentScrollAnimation = null;
+		}
+	};
+
+	currentScrollAnimation = requestAnimationFrame(animate);
+}
+
+let currentTop: number = 0;
+
+// Simualte our prompter engine sending us a new scroll position every 300ms
+setInterval(() => {
+	currentTop += 20;
+	animateScroll(currentTop);
+}, 300);
