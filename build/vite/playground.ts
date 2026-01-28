@@ -222,6 +222,7 @@ let currentTop: number = 0;
 
 // Simualte our prompter engine sending us a new scroll position every 300ms
 setInterval(() => {
-	currentTop += 20;
+	const adjustment = Math.floor(Math.random() * 41) + 10; // Random value between 10 and 50
+	currentTop += adjustment;
 	animateScroll(currentTop);
 }, 300);
