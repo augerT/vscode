@@ -48,20 +48,19 @@ h1 {
 	width: 256px;
 }
 
-.small-inline {
-	color: #56004d !important;
-	background: #dedede !important;
+
+.cs-prompt-output {
+	color: red !important;
 }
 
-.big-whole-line {
-	font-weight: bold;
+.small-inline-classname {
 	color: #009425 !important;
 }
 
 .big-inline {
-	font-weight: bold;
 	color: #00a7da !important;
 }
+
 
 /*
 Disabled because of rspack
