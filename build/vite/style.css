@@ -63,6 +63,28 @@ h1 {
 	color: #00a7da !important;
 }
 
+
+.align-center {
+	text-align: center;
+}
+
+.align-right {
+	text-align: right;
+}
+
+/* .monaco-editor .view-line > span {
+	position: unset !important;
+}
+
+.monaco-editor .view-line:has(.align-center) {
+	text-align: center !important;
+}
+
+.monaco-editor .view-line:has(.align-right) {
+	text-align: right !important;
+} */
+
+
 /*
 Disabled because of rspack
 

@@ -71,6 +71,7 @@ const editor = monaco.editor.create(document.getElementById('editor')!, {
 	wordWrap: 'on',
 	wrappingStrategy: 'advanced',
 	model,
+	lineNumbers: 'off',
 });
 
 // Make the model and editor available globally for fiddling in the console.
@@ -145,15 +146,14 @@ registerDecoratorButton('big-inline', {
 	lineHeight: 2
 });
 
-registerDecoratorButton('big-whole-line', {
+registerDecoratorButton('align-center', {
 	isWholeLine: true,
-	fontSize: '1.5',
-	lineHeight: 1.5
+	className: 'align-center'
 });
 
-registerDecoratorButton('rtl', {
+registerDecoratorButton('align-right', {
 	isWholeLine: true,
-	textDirection: monaco.editor.TextDirection.RTL
+	className: 'align-right'
 });
 
 const scale = document.getElementById('scale') as HTMLInputElement;
@@ -172,5 +172,6 @@ monaco.editor.EditorZoom.onDidChangeZoomLevel((zoomLevel) => {
 		}
 	});
 
-	editor.getContainerDomNode().style.width = `${256 * factor}px`;
+	const margin = 26;
+	editor.getContainerDomNode().style.width = `${(256 - margin) * factor + margin}px`;
 });
