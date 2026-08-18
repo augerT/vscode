@@ -89,7 +89,7 @@ const horizontalScrollbarSize = 12;
 const editor = monaco.editor.create(document.getElementById('editor')!, {
 	automaticLayout: true,
 	cursorBlinking: 'solid',
-	fontFamily: 'arial',
+	fontFamily: 'Arial Narrow',
 	glyphMargin: false,
 	minimap: { enabled: false, },
 	scrollbar: {
@@ -168,15 +168,14 @@ registerDecoratorButton('small-inline', {
 	lineHeight: 0.3
 });
 
-registerDecoratorButton('big-inline', {
-	fontSize: '2',
-	lineHeight: 2
+registerDecoratorButton('bold', {
+	inlineClassName: 'bold',
+	inlineClassNameAffectsLetterSpacing: true,
 });
 
-registerDecoratorButton('big-whole-line', {
-	isWholeLine: true,
-	fontSize: '1.5',
-	lineHeight: 1.5
+registerDecoratorButton('arial', {
+	inlineClassName: 'arial',
+	inlineClassNameAffectsLetterSpacing: true,
 });
 
 registerDecoratorButton('rtl', {
@@ -187,6 +186,7 @@ registerDecoratorButton('rtl', {
 const scale = document.getElementById('scale') as HTMLInputElement;
 scale.addEventListener('change', event => {
 	const value = scale.valueAsNumber;
+	console.log('Setting zoom level to', value);
 	monaco.editor.EditorZoom.setZoomLevel(value);
 });
 

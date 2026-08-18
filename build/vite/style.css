@@ -51,14 +51,14 @@ h1 {
 	background: #dedede !important;
 }
 
-.big-whole-line {
-	font-weight: bold;
-	color: #009425 !important;
-}
-
-.big-inline {
+.bold {
 	font-weight: bold;
 	color: #00a7da !important;
+}
+
+.arial {
+	font-family: 'Arial';
+	color: red !important;
 }
 
 /*

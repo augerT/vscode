@@ -1,65 +1,61 @@
 <!-- Copyright (C) Microsoft Corporation. All rights reserved. -->
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="color-scheme" content="light dark" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Monaco Playground</title>
-	</head>
-	<body>
-		<main>
-			<h1>Monaco Playground</h1>
-			<form class="buttons">
-				<label>
-					<input type="checkbox" id="small-inline" />
-					Small inline
-				</label>
-				<label>
-					<input type="checkbox" id="big-inline" />
-					Big inline
-				</label>
-				<label>
-					<input type="checkbox" id="big-whole-line" />
-					Big whole line
-				</label>
-				<label>
-					<input type="checkbox" id="rtl" />
-					RTL
-				</label>
-				<label>
-					<select id="scrollbar-position">
-						<option value="left">Left</option>
-						<option selected value="right">Right</option>
-					</select>
-					Scrollbar
-				</label>
-				<label>
-					<select id="margin-position">
-						<option selected value="left">Left</option>
-						<option value="right">Right</option>
-					</select>
-					Margin
-				</label>
-				<label>
-					<input
-						type="range"
-						id="scrollbar-size"
-						min="10"
-						max="20"
-						step="1"
-						value="16"
-					/>
-					Scrollbar size
-				</label>
-				<label>
-					<input type="range" id="scale" min="-5" max="20" step="1" value="1" />
-					Scale
-				</label>
-			</form>
-			<div id="editor"></div>
-		</main>
-		<script src="./index.ts" type="module"></script>
-		<script src="./playground.ts" type="module"></script>
-	</body>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="color-scheme" content="light dark" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Monaco Playground</title>
+</head>
+
+<body>
+	<main>
+		<h1>Monaco Playground</h1>
+		<form class="buttons">
+			<label>
+				<input type="checkbox" id="small-inline" />
+				Small inline
+			</label>
+			<label>
+				<input type="checkbox" id="bold" />
+				Bold
+			</label>
+			<label>
+				<input type="checkbox" id="arial" />
+				Arial
+			</label>
+			<label>
+				<input type="checkbox" id="rtl" />
+				RTL
+			</label>
+			<label>
+				<select id="scrollbar-position">
+					<option value="left">Left</option>
+					<option selected value="right">Right</option>
+				</select>
+				Scrollbar
+			</label>
+			<label>
+				<select id="margin-position">
+					<option selected value="left">Left</option>
+					<option value="right">Right</option>
+				</select>
+				Margin
+			</label>
+			<label>
+				<input type="range" id="scrollbar-size" min="10" max="20" step="1" value="16" />
+				Scrollbar size
+			</label>
+			<label>
+				<input type="range" id="scale" min="-5" max="20" step="1" value="1" />
+				Scale
+			</label>
+		</form>
+		<div id="editor"></div>
+	</main>
+	<script src="./index.ts" type="module"></script>
+	<script src="./playground.ts" type="module"></script>
+</body>
+
 </html>
